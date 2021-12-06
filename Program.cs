@@ -46,6 +46,21 @@ namespace Samlingsklasser
                 case "7":
                     StackExempel();
                     break;
+                case "9":
+                    Övning2();
+                    break;
+                case "10":
+                    Övning3();
+                    break;
+                case "11":
+                    Övning4();
+                    break;
+                case "12":
+                    Övning5();
+                    break;
+                case "13":
+                    Övning6();
+                    break;
             }
 
             Console.ReadKey();
@@ -75,6 +90,31 @@ namespace Samlingsklasser
         {
             //Övning 1
 
+            //Skapa en dictionary med int som nyckel och int som värde
+            SortedList<int, int> resultat = new SortedList<int, int>();
+
+            //skapa ett Random objekt för att slumpa
+            Random random = new Random();
+
+            //Gör tusen upprepnigar
+            for (int i = 0; i < 1000; i++)
+            {
+                //Slumpa tal mellan 1 och 6
+                int tal = random.Next(1, 7);
+
+                //Lägg nyckel om denna inte redan finns
+                if (!resultat.ContainsKey(tal))
+                    resultat.Add(tal, 0);
+
+                //Öka förekomsten av tal
+                resultat[tal]++;
+            }
+
+            //Visa resultatet
+            foreach (KeyValuePair<int, int> kvp in resultat)
+            {
+                Console.WriteLine("Nyckel: {0} Värde: {1}", kvp.Key, kvp.Value);
+            }
         }
 
         static void DiceDictionary()
@@ -214,5 +254,84 @@ namespace Samlingsklasser
             }
 
         }
+
+        static void Övning2()
+        {
+
+            //Skapa en lista av double
+            List<double> övning2 = new List<double>();
+
+            //Här använde jag en for metod
+            for (int i = 0; i < 1567891290; i++)
+            {
+                //Frågar användaren om värdet på talet, sen omvandlar svaret från string till double.
+                //Till sist så använde jag "if" för att det ska finnas ett vilkor om man trycker in talet 0.
+                Console.Write("Mata in ett tal:");
+                double tal = double.Parse(Console.ReadLine());
+                if (tal == 0)
+                {
+                    //När man matar in 0, så programmet stängs av
+                    Environment.Exit(1);
+                }
+                //Else satsen, hjälper oss när talet har annat värden än 0
+                else
+                {
+                    //Den här koden hjälper att lägga talet till i listan som vi har skapat.
+                    övning2.Add(tal);
+                    //Skriver ut medelvärdet av talen i listan. 
+                    Console.WriteLine("Medelvärde:" + övning2.Average());
+                }
+            }
+        }
+            
+        static void Övning3()
+        {
+
+        }
+
+        static void Övning4()
+        {
+            Random tal1 = new Random();
+            var korten = new Dictionary<string, int>();
+            var colors = new string[] { "H", "K", "S", "R" }; 
+            for (int i = 0; i <= 3; i++)
+            {
+                korten.Add(colors[i] + "Es", 1);
+                for (int a = 2; a <= 10; a++)
+                {
+                    korten.Add(colors[i] + a.ToString(), a);
+                }
+                korten.Add(colors[i] + "Kn", 11);
+                korten.Add(colors[i] + "D", 12);
+                korten.Add(colors[i] + "K", 13);
+            }
+            var keys = korten.Keys.ToArray();
+
+            int counter = 0;
+            for (int i = 0; i < 1000; i++)
+            {
+                int slump1 = tal1.Next(0, keys.Length);
+                int slump2 = tal1.Next(0, keys.Length);
+                if (korten[keys[slump2]] == korten[keys[slump1]])
+                {
+                    Console.WriteLine("Par!");
+                    counter++;
+                }
+            }
+            Console.WriteLine(counter);
+        }
+    
+
+        static void Övning5()
+        {
+
+        }
+
+        static void Övning6()
+        {
+
+        }
+
+
     }
 }
